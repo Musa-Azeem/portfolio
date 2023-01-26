@@ -96,14 +96,14 @@ body {
   color: var(--hover);
 }
 
-/* homepage */
-.home {
+/* homepages */
+.pages {
   margin-left: 265px;   /* Same as the width of the sidebar + margin */
   padding: 0px 10px;
   color: var(--sidebg);
 }
 
-.home .header {
+.pages .header {
   font-size: 30px;
   margin: 30px auto;
   text-align: center;

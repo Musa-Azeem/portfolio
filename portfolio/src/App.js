@@ -1,4 +1,8 @@
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SideNav from './components/SideNav'
+import Projects from './pages/Projects'
+import Home from './pages/Home'
+import About from './pages/About'
 
 function App() {
   return (
@@ -13,6 +17,14 @@ function App() {
             <Route
               path="/"
               element={<Home />}
+            />
+            <Route
+              path="/about"
+              element={<About />}
+            />
+            <Route
+              path="/projects"
+              element={<Projects />}
             />
           </Routes>
         </div>
