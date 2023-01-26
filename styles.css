@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
 :root {
-  --text: #f8f9fa;
+  --navtext: #f8f9fa;
   --bg: #D3D3D3;
   --hover: #bcbcbc;
   --sidebg: #333333;
@@ -12,7 +12,6 @@ body {
   background: var(--bg);
   margin: 0;
   font-family: "Poppins";
-  color: var(--text);
   overflow: auto;
 }
 
@@ -29,6 +28,7 @@ body {
   margin: 15px 0px 0px 15px;
   box-shadow: 3px 0px 4px black;
   border-radius: 2%;
+  color: var(--navtext);
 } 
 
 .sidenav .container {
@@ -89,7 +89,7 @@ body {
 }
 
 .sidenav a {
-  color: var(--text);
+  color: var(--navtext);
   text-decoration: none;
 }
 .sidenav a:hover {
@@ -98,8 +98,16 @@ body {
 
 /* homepage */
 .home {
-  margin-left: 160px; /* Same as the width of the sidebar */
+  margin-left: 265px;   /* Same as the width of the sidebar + margin */
   padding: 0px 10px;
+  color: var(--sidebg);
+}
+
+.home .header {
+  font-size: 30px;
+  margin: 30px auto;
+  text-align: center;
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 700px) {
@@ -109,7 +117,7 @@ body {
     margin: 10% 10% 10% 10%;
   } 
   .sidenav a:hover {
-    color: var(--text);
+    color: var(--navtext);
   }
 
 }
