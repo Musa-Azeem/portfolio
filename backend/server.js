@@ -1,6 +1,7 @@
 require('dotenv').config()  // .env should have PORT and MONGOURI
 const express = require('express')
 const mongoose = require('mongoose')
+const projectsRoutes = require('./routes/projectRoutes')
 
 const app = express()
 
@@ -11,6 +12,9 @@ app.use((req, res, next) => {   // request, response, next middleware function
   console.log(req.path, req.method)
   next()
 })
+
+// use routes relative to /api/projects/
+app.use('/api/projects/', projectsRoutes)
 
 // Connect to MongoDB on Atlas
 mongoose.connect(process.env.MONGO_URI)
