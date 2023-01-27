@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // Define schema for a project
-const workoutSchema = new Schema({
+const projectSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -21,3 +21,6 @@ const workoutSchema = new Schema({
     requred: false
   }
 })
+
+// Make and export model based on this schema
+module.exports = mongoose.model('Project', projectSchema)   // collection name, schema
