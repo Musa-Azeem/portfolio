@@ -12,6 +12,21 @@ const getProjects = async (req, res) => {     // asynchronous - wait for respons
 
 // get one project
 const getProject = async (req, res) => {
+  const { id } = req.params
+
+  // Verify ID format (mongoose special format)
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such project'})
+  }
+  
+  // Search for project with requested id
+  const project = await Project.findById(id)
+
+  // Return 404 if doc doesn't exist
+  if (!project) {
+    return res.status(404).json({error: 'No such project'})
+  }
+  res.status(200).json(project)
 }
 
 // Create new project
@@ -55,10 +70,43 @@ const createProject = async (req, res) => {
 
 // Delete a project
 const deleteProject = async(req, res) => {
+  // Get Id of doc to delete from DELETE request url
+  const { id } = req.params
+
+  // Verify ID format (mongoose requires a special format)
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such project'})
+  }
+
+  // Delete project
+  const project = await Project.findOneAndDelete({_id: id})     // Property name in doc is '_id'
+
+  if (!project) {
+    return res.status(400).json({error: 'No such project'})
+  }
+  res.status(200).json(project)
 }
 
-// Update a project
+// Update a project (PATCH)
 const updateProject = async (req, res) => {
+  // Get Id of doc to delete from PATCH request url
+  const { id } = req.params
+
+  // Verify ID format (mongoose requires a special format)
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({error: 'No such project'})
+  }
+
+  // find workout to update
+  const project = await Project.findOneAndUpdate({_id: id}, { // returns original
+      // Object to define update (can update individual fields)
+      ...req.body     // Spread whichever properties were sent into this object
+  })
+
+  if (!project) {
+      return res.status(400).json({error: 'No such project'})
+  }
+  res.status(200).json(project)
 }
 
 module.exports = {
