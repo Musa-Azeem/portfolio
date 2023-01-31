@@ -19,7 +19,7 @@ Resources:
             Method: any
       ImageUri: portfolioapifunction:nodejs14.x-v1
     Metadata:
-      DockerContext: /home/mmazeem/dev/portfolio/backend/my-app
+      DockerContext: /Users/musaazeem/dev/portfolio/backend/my-app
       DockerTag: nodejs14.x-v1
       Dockerfile: Dockerfile
       SamResourceId: PortfolioApiFunction
