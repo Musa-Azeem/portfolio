@@ -1,6 +1,0 @@
-node_modules
-template.yaml
-.aws-sam
-aws
-.gitignore
-README.md
