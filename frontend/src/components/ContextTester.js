@@ -27,8 +27,11 @@ const ContextTester = () => {
     } 
     ]})
   }, [dispatch]) 
+  useEffect(() => {
+    console.log(projects)
+  }, [projects])
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = () => {
     // delete project 1
     const json = {
       "_id": "1",
@@ -37,15 +40,24 @@ const ContextTester = () => {
       "projectUrl": "url1"
     }
     dispatch({type: 'DELETE_PROJECT', payload: json})
-    console.log(projects)
+  }
+  const handleCreateClick = () => {
+    const json = {
+      "_id": "4",
+      "title": "title4",
+      "description": "des4",
+      "projectUrl": "url4"
+    }
+    dispatch({type: 'CREATE_PROJECT', payload: json})
+  }
+  handleSetClick = () => {
+
   }
   return (
     <div>
-      {/* <h1 onClick={handleGetClick}>Get all</h1> */}
-      {/* <h1 onClick={handleGetOneClick}>Get One</h1> */}
-      {/* <h1 onClick={handleCreateClick}>Create</h1> */}
+      <button onClick={handleCreateClick}>Create</button>
       <button onClick={handleDeleteClick}>Delete</button>
-      {/* <h1 onClick={handleUpdateClick}>Update</h1>       */}
+      <button onClick={handleUpdateClick}>Update</button>      
     </div>
   )
 }
