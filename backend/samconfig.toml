@@ -2,10 +2,9 @@ version = 0.1
 [default]
 [default.deploy]
 [default.deploy.parameters]
-stack_name = "personal-website"
+stack_name = "portfolio-api"
 s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-c1fsd79fj86d"
-s3_prefix = "personal-website"
+s3_prefix = "portfolio-api"
 region = "us-east-2"
-confirm_changeset = true
 capabilities = "CAPABILITY_IAM"
-image_repositories = ["HelloWorldFunction=013767262474.dkr.ecr.us-east-2.amazonaws.com/personalwebsitea99aaa11/helloworldfunction19d43fc4repo"]
+image_repositories = ["PortfolioApiFunction=013767262474.dkr.ecr.us-east-2.amazonaws.com/portfolioapi23a8b3f1/portfolioapifunction03f98da2repo"]
