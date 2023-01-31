@@ -50,14 +50,10 @@ const ContextTester = () => {
     }
     dispatch({type: 'CREATE_PROJECT', payload: json})
   }
-  handleSetClick = () => {
-
-  }
   return (
     <div>
       <button onClick={handleCreateClick}>Create</button>
       <button onClick={handleDeleteClick}>Delete</button>
-      <button onClick={handleUpdateClick}>Update</button>      
     </div>
   )
 }

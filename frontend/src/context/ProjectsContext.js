@@ -33,19 +33,6 @@ export const projectsReducer = (state, action) => {
           return p._id !== action.payload._id
         })
       }
-    case 'UPDATE_PROJECT':
-      // payload will be a project object with fields to update
-      return {
-        // update one project
-        projects: state.projects.map(project => {
-          // update only the project sent
-          if (project._id !== action.payload._id) {
-            return project
-          }
-          // Return project with any updated fields from payload
-          return {...project, ...action.payload.project}          
-        })
-      }
     default:
       return state
   }
