@@ -1,5 +1,4 @@
 const express = require('express')
-const projcetModel = require('../models/projectModel')
 const {
   getProjects,
   getProject,
