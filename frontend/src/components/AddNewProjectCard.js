@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useProjectsContext } from "../hooks/useProjectsContext"
 
-const AddNewProjectCard = () => {
+const AddNewProjectCard = ({ SRV_URL }) => {
+  const { projects, dispatch } = useProjectsContext()
+
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [projectUrl, setProjectUrl] = useState('')
@@ -30,6 +33,7 @@ const AddNewProjectCard = () => {
     //   setEmptyFields(json.emptyFields)
     // }
     // if (response.ok) {
+      const json = project
       setError(null)
       setEmptyFields([])
       console.log('new project added', json)
@@ -48,10 +52,38 @@ const AddNewProjectCard = () => {
   return (
     <section className="addNewProjectCard">
       <form onSubmit={handleSubmit}>
-        
+        <h1>Add new Project</h1>
+        <label>Title</label>
+        <input
+          type="text"
+          onChange={ (e) => setTitle(e.target.value)}
+          value = { title }
+          className={ emptyFields.includes('title') ? 'error' : '' }
+        />
+
+      <label>Description</label>
+      <input
+          type="text"
+          onChange={ (e) => setDescription(e.target.value)}
+          value = { description }
+          className={ emptyFields.includes('description') ? 'error' : '' }
+      />
+
+      <label>Project URL</label>
+      <input
+          type="text"
+          onChange={ (e) => setProjectUrl(e.target.value)}
+          value = { projectUrl }
+          className={ emptyFields.includes('projectUrl') ? 'error' : '' }
+      />
+
+      <button>Add Project</button>
+
+      {/* Output error if there is one */}
+      {error && <div className="error">{ error }</div>}
       </form>
     </section>
   )
 }
 
-export default ProjectCard
+export default AddNewProjectCard

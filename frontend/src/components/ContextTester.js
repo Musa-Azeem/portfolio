@@ -1,32 +1,20 @@
 import { useEffect } from "react";
 import { useProjectsContext } from "../hooks/useProjectsContext";
 
-const ContextTester = () => {
+const ContextTester = ({ SRV_URL }) => {
   const { projects, dispatch } = useProjectsContext()  // Get context dispatch function to update local project
 
   useEffect(() => {
-    dispatch({type: 'SET_PROJECTS', payload: [
-      // Random workouts to test
-    {
-      "_id": "1",
-      "title": "title1",
-      "description": "des1",
-      "projectUrl": "url1"
-    },
-    {
-      "_id": "2",
-      "title": "title2",
-      "description": "des2",
-      "projectUrl": "url2"
-    },
-    {
-      "_id": "3",
-      "title": "title3",
-      "description": "des3",
-      "projectUrl": "url3"
-    } 
-    ]})
+    const fetchProjects = async () => {
+      const response = await fetch(SRV_URL)
+      const json = await response.json()
+      if (response.ok) {
+        dispatch({type: 'SET_PROJECTS', payload: json})
+      }
+    }
+    fetchProjects()
   }, [dispatch]) 
+
   useEffect(() => {
     console.log(projects)
   }, [projects])
