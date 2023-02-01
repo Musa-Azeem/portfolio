@@ -5,6 +5,7 @@ const ContextTester = ({ SRV_URL }) => {
   const { projects, dispatch } = useProjectsContext()  // Get context dispatch function to update local project
 
   useEffect(() => {
+    
     const fetchProjects = async () => {
       const response = await fetch(SRV_URL)
       const json = await response.json()
@@ -13,7 +14,7 @@ const ContextTester = ({ SRV_URL }) => {
       }
     }
     fetchProjects()
-  }, [dispatch]) 
+  }, [dispatch, SRV_URL])
 
   useEffect(() => {
     console.log(projects)

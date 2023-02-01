@@ -1,11 +1,12 @@
-import React from "react";
+import React from "react"
+import cluster from '../assets/images/cluster.png'
 
-const ProjectCard = ({ projectTitle, projectDescription, image }) => {
+const ProjectCard = ({ project }) => {
   return (
     <section className="projectCard">
-      <img src={ image } alt={ "Image for " + projectTitle }></img>
-      <h1>{ projectTitle }</h1>
-      <p>{ projectDescription }</p>
+      <img src={ cluster } alt={ "Image for " + project.title }></img>
+      <h1>{ project.title }</h1>
+      <p>{ project.description }</p>
     </section>
   )
 }
