@@ -1,6 +1,7 @@
 require('dotenv').config()  // .env should have PORT and MONGOURI
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors');
 const projectsRoutes = require('./routes/projectRoutes')
 
 // Set deployment mode to AWS ('true') or local ('false') - default AWS
@@ -12,6 +13,10 @@ if (process.env.AWS) {
 const app = express()
 
 // Middleware
+app.use(cors({
+    origin: '*'   // public API for now
+}));
+
 app.use(express.json())     // attach json objects sent with request
 app.use((req, res, next) => {   // request, response, next middleware function
   // Log Request
