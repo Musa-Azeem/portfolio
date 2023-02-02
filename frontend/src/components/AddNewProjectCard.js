@@ -17,23 +17,23 @@ const AddNewProjectCard = ({ SRV_URL }) => {
     const project = {title, description, projectUrl}
 
     // Use fetch API to send post request to add new workout to DB
-    // const response = await fetch('/api/projects/', {
-    //   method: 'POST',
-    //   body: JSON.stringify(project),   // send project object as json string as expected
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
+    const response = await fetch(SRV_URL, {
+      method: 'POST',
+      body: JSON.stringify(project),   // send project object as json string as expected
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
 
     // Check response 
-    // response object new project or error
-    // const json = await response.json() 
-    // if (!response.ok) {
-    //   setError(json.error)
-    //   setEmptyFields(json.emptyFields)
-    // }
-    // if (response.ok) {
-      const json = project
+    // response object is new project or error
+    const json = await response.json() 
+    if (!response.ok) {
+      setError(json.error)
+      setEmptyFields(json.emptyFields)
+    }
+
+    if (response.ok) {
       setError(null)
       setEmptyFields([])
       console.log('new project added', json)
@@ -45,8 +45,8 @@ const AddNewProjectCard = ({ SRV_URL }) => {
 
       // Now that new project is added to DB, update local projects in context
       dispatch({type: 'CREATE_PROJECT', payload: json})
-    // }
     }
+  }
 
   
   return (

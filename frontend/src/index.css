@@ -6,6 +6,7 @@
   --bg: #D3D3D3;
   --hover: #bcbcbc;
   --sidebg: #333333;
+  --error: #e7195a;
 }
 
 body {
@@ -212,6 +213,13 @@ body {
     /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
     border: 1px solid var(--hover);
     color: var(--hover);
+  }
+
+  .addNewProjectCard .error {
+    border-color: var(--error);
+  }
+  .addNewProjectCard .error::placeholder {
+    color: var(--error);
   }
 
 @media screen and (max-width: 700px) {

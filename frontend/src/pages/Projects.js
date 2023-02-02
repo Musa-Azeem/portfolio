@@ -23,7 +23,7 @@ const Projects = () => {
       <div className="header">
         <h1>Projects</h1>
       </div>
-      <AddNewProjectCard />
+      <AddNewProjectCard SRV_URL={ SRV_URL }/>
       <div className="projectsBody">        
         {/* Create a Project Card for each project fetched from DB*/}
         {projects && projects.map((p) => (

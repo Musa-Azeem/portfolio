@@ -22,7 +22,7 @@ export const projectsReducer = (state, action) => {
       // payload will be just one project to add
       return {
         // add new project to list, and spread old projects into list
-        projects: [action.payload, ...state.projects] 
+        projects: [...state.projects, action.payload] 
       }
     case 'DELETE_PROJECT':
       // payload will be the project to delete
