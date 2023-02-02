@@ -154,7 +154,7 @@ body {
   background-color: var(--sidebg);
   color: var(--navtext);
   box-shadow: 3px 0px 4px black;
-  border-radius: 2%;
+  border-radius: 20px;
 }
 
   .addNewProjectCard h1 {
@@ -164,11 +164,54 @@ body {
     text-align: center;
   }
 
-  .addNewProjectCard .topRow {
-    display: flex;
+  .addNewProjectCard form {
+    margin: 20px;
   }
-  .addNewProjectCard .topRow label{
-    margin: 0px 10px;
+
+  .addNewProjectCard input {
+    box-sizing: border-box;
+    outline: none;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid var(--navtext);
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+    color: var(--navtext)
+  }
+
+  .addNewProjectCard .halfRight {
+    width: 48%;
+    margin-left: 2%;
+  }
+  .addNewProjectCard .halfLeft {
+    width: 48%;
+    margin-right: 2%;
+  }
+
+  .addNewProjectCard .full {
+    width: 100%;
+  }
+
+  .addNewProjectCard button {
+    background-color: transparent;
+    border: 1px solid var(--navtext);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--navtext);
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 5%;
+    margin-top: 20px;
+  }
+
+  .addNewProjectCard button:hover {
+    /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
+    border: 1px solid var(--hover);
+    color: var(--hover);
   }
 
 @media screen and (max-width: 700px) {
