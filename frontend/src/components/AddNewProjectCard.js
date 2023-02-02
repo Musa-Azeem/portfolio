@@ -51,31 +51,34 @@ const AddNewProjectCard = ({ SRV_URL }) => {
   
   return (
     <section className="addNewProjectCard">
+      <h1>Add new Project</h1>
       <form onSubmit={handleSubmit}>
-        <h1>Add new Project</h1>
-        <label>Title</label>
-        <input
-          type="text"
-          onChange={ (e) => setTitle(e.target.value)}
-          value = { title }
-          className={ emptyFields.includes('title') ? 'error' : '' }
-        />
+        <div className="topRow">
+          <label>Title</label>
+          <input
+            type="text"
+            onChange={ (e) => setTitle(e.target.value)}
+            value = { title }
+            className={ emptyFields.includes('title') ? 'error' : '' }
+          />
 
-      <label>Description</label>
-      <input
-          type="text"
-          onChange={ (e) => setDescription(e.target.value)}
-          value = { description }
-          className={ emptyFields.includes('description') ? 'error' : '' }
-      />
-
-      <label>Project URL</label>
-      <input
-          type="text"
-          onChange={ (e) => setProjectUrl(e.target.value)}
-          value = { projectUrl }
-          className={ emptyFields.includes('projectUrl') ? 'error' : '' }
-      />
+          <label>Project URL</label>
+          <input
+              type="text"
+              onChange={ (e) => setProjectUrl(e.target.value)}
+              value = { projectUrl }
+              className={ emptyFields.includes('projectUrl') ? 'error' : '' }
+          />
+        </div>
+        <div className="bottomRow">
+          <label>Description</label>
+          <input
+              type="text"
+              onChange={ (e) => setDescription(e.target.value)}
+              value = { description }
+              className={ emptyFields.includes('description') ? 'error' : '' }
+          />
+        </div>
 
       <button>Add Project</button>
 

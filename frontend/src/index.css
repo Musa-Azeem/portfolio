@@ -149,7 +149,6 @@ body {
   }
 
 .addNewProjectCard {
-  display: flex;
   margin: 50px;
   padding: 5px;
   background-color: var(--sidebg);
@@ -157,6 +156,20 @@ body {
   box-shadow: 3px 0px 4px black;
   border-radius: 2%;
 }
+
+  .addNewProjectCard h1 {
+    width: 100%;
+    padding: 10px;
+    margin: auto 0px;
+    text-align: center;
+  }
+
+  .addNewProjectCard .topRow {
+    display: flex;
+  }
+  .addNewProjectCard .topRow label{
+    margin: 0px 10px;
+  }
 
 @media screen and (max-width: 700px) {
 
