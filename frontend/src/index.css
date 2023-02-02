@@ -182,14 +182,21 @@ body {
     color: var(--navtext)
   }
 
-  .addNewProjectCard .halfRight {
+  /* .addNewProjectCard .halfRight {
     width: 48%;
     margin-left: 2%;
   }
   .addNewProjectCard .halfLeft {
     width: 48%;
     margin-right: 2%;
+  } */
+  .addNewProjectCard .topRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2%;
   }
+
+
 
   .addNewProjectCard .full {
     width: 100%;
