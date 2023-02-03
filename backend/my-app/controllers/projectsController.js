@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Project = require('../models/projectModel')
+const checkImageUrl = require('../utils/checkImageUrl')
 
 
 // get all projects
@@ -45,9 +46,22 @@ const createProject = async (req, res) => {
   if (!projectUrl) {
     emptyFields.push('projectUrl')
   }
-  // imageUrl is optional
+
+  const newImageUrl = checkImageUrl(imageUrl)
+  console.log(newImageUrl)
+  if (!newImageUrl) {
+    // If image URL was not formatted correctly, make it an error field
+    emptyFields.push('imageUrl')
+  }
 
   if (emptyFields.length > 0) {
+    if (emptyFields.includes('imageUrl')){
+      return res.status(400)
+        .json({
+          error: 'Please fill in all the fields and provide a valid image URL', 
+          emptyFields: emptyFields
+        })
+    }
     return res.status(400)
       .json({error: 'Please fill in all the fields', emptyFields: emptyFields})
   }
