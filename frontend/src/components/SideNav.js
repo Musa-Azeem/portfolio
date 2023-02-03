@@ -8,7 +8,7 @@ const Navbar = () => {
     <section className="sidenav">
 
       <div className="container">
-        {/* <img src={ head } className="pfp" alt="me"></img> */}
+        <img src={ head } className="pfp" alt="me"></img>
       </div>
       <div className="container">
         <h1>Musa Azeem</h1>

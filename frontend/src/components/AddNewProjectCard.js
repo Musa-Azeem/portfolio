@@ -11,9 +11,22 @@ const AddNewProjectCard = ({ SRV_URL }) => {
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])  // Which fields were empty after form submission
 
+  function formatUrl() {
+    // Format google drive image URL to enable embedding
+    if (imageUrl.endsWith("view?usp=sharing")) {
+      // If URL ends this way, it is not formatted
+      const imageUrlId = imageUrl.split('/')[5]
+      return "https://drive.google.com/uc?export=view&id=" + imageUrlId
+    }
+    return imageUrl
+  }
+
   const handleSubmit = async (e) => {
     // e is form submission event
     e.preventDefault()  // prevent page from refreshing on form submit
+
+    const newImageUrl = formatUrl()
+    console.log(newImageUrl)
 
     const project = {title, description, projectUrl}
 
