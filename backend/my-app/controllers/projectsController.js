@@ -47,12 +47,13 @@ const createProject = async (req, res) => {
     emptyFields.push('projectUrl')
   }
 
-  const newImageUrl = checkImageUrl(imageUrl)
+  const newImageUrl = await checkImageUrl(imageUrl)
   console.log(newImageUrl)
   if (!newImageUrl) {
     // If image URL was not formatted correctly, make it an error field
     emptyFields.push('imageUrl')
   }
+  console.log('here')
 
   if (emptyFields.length > 0) {
     if (emptyFields.includes('imageUrl')){

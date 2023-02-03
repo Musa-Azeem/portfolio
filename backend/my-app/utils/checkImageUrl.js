@@ -1,6 +1,6 @@
 const request = require('request');
 
-module.exports = function (imageUrl) {
+module.exports = async function (imageUrl) {
   const defaultUrl = "https://drive.google.com/uc?export=view&id=1BY5HC2nTQqxw26nOzB_AQ8Yv3FS_hzpc"
 
   // If image URL was not uploaded, use a default image
@@ -8,17 +8,32 @@ module.exports = function (imageUrl) {
     return defaultUrl
   }
 
-  console.log(imageUrl)
-
   // check image URL formatting
   if (imageUrl.startsWith('https://drive.google.com/uc?export=view&id=')) {
     // check response from url
-    request(imageUrl, (error, response, body) => {
-      if(!error && response.statusCode == 200){
-        // Response success
-        return imageUrl
-      }
+    const promise = new Promise((resolve, reject) => {
+      request(imageUrl, (error, response, body) => {
+        if (!error && response.statusCode == 200) {
+          // Response success
+          console.log('s')
+          resolve(imageUrl);
+        }
+        // Response failure
+        reject(error)
+      })
     })
+
+    promise.then(
+      (result) => {
+        console.log('h '+result)
+        return result
+      },
+      (error) => {
+        return null
+      }
+    )
+
+
   }
 
   // Failure
