@@ -28,7 +28,7 @@ const AddNewProjectCard = ({ SRV_URL }) => {
     const newImageUrl = formatUrl()
     console.log(newImageUrl)
 
-    const project = {title, description, projectUrl}
+    const project = {title, description, projectUrl, imageUrl}
 
     // Use fetch API to send post request to add new project to DB
     const response = await fetch(SRV_URL, {
@@ -56,6 +56,7 @@ const AddNewProjectCard = ({ SRV_URL }) => {
       setTitle('')
       setDescription('')
       setProjectUrl('')
+      setImageUrl('')
 
       // Now that new project is added to DB, update local projects in context
       dispatch({type: 'CREATE_PROJECT', payload: json})

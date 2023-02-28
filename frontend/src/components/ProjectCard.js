@@ -19,11 +19,11 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
     })
     dispatch({type: "DELETE_PROJECT", payload: project._id})
   }
-  const cluster = "https://drive.google.com/uc?export=view&id=142UDLhTMqBkqIbAko2UsowqyvEyf6qJl"
+  // const cluster = "https://drive.google.com/uc?export=view&id=142UDLhTMqBkqIbAko2UsowqyvEyf6qJl"
   // https://drive.google.com/uc?export=view&id=[image id]
   return (
     <section className="projectCard">
-      <img src={ cluster } alt={ "Image for " + project.title }></img>
+      <img src={ project.imageUrl } alt={ "Image for " + project.title }></img>
       <h1>{ project.title }</h1>
       <p>{ project.description }</p>
       {admin && <div onClick={ handleDelete }>
