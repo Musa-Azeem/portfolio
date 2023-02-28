@@ -139,6 +139,7 @@ body {
     padding: 10px;
     margin: auto 0px;
     text-align: center;
+    width: 70%;
   }
 
   .projectCard p {
@@ -147,6 +148,17 @@ body {
 
   .projectCard:hover {
     cursor: pointer;
+  }
+
+  .projectCard .icon {
+    height: 32px;
+    width: 32px;
+    fill: currentColor;
+    margin: 5px;
+  }
+
+  .projectCard .icon:hover {
+    color: var(--hover);
   }
 
 .addNewProjectCard {

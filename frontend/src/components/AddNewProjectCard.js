@@ -30,7 +30,7 @@ const AddNewProjectCard = ({ SRV_URL }) => {
 
     const project = {title, description, projectUrl}
 
-    // Use fetch API to send post request to add new workout to DB
+    // Use fetch API to send post request to add new project to DB
     const response = await fetch(SRV_URL, {
       method: 'POST',
       body: JSON.stringify(project),   // send project object as json string as expected
