@@ -6,6 +6,7 @@
   --bg: #D3D3D3;
   --hover: #bcbcbc;
   --sidebg: #333333;
+  --error: #e7195a;
 }
 
 body {
@@ -116,6 +117,12 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
+  .projectsBody .loading {
+    font-size: 40px;
+    margin: auto 0px;
+    text-align: center;
+  }
+
 .projectCard {
   display: flex;
   margin: 50px;
@@ -138,6 +145,7 @@ body {
     padding: 10px;
     margin: auto 0px;
     text-align: center;
+    width: 70%;
   }
 
   .projectCard p {
@@ -146,6 +154,97 @@ body {
 
   .projectCard:hover {
     cursor: pointer;
+  }
+
+  .projectCard .icon {
+    height: 32px;
+    width: 32px;
+    fill: currentColor;
+    margin: 5px;
+  }
+
+  .projectCard .icon:hover {
+    color: var(--hover);
+  }
+
+.addNewProjectCard {
+  margin: 50px;
+  padding: 5px;
+  background-color: var(--sidebg);
+  color: var(--navtext);
+  box-shadow: 3px 0px 4px black;
+  border-radius: 20px;
+}
+
+  .addNewProjectCard h1 {
+    width: 100%;
+    padding: 10px;
+    margin: auto 0px;
+    text-align: center;
+  }
+
+  .addNewProjectCard form {
+    margin: 20px;
+  }
+
+  .addNewProjectCard input {
+    box-sizing: border-box;
+    outline: none;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid var(--navtext);
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+    color: var(--navtext)
+  }
+
+  /* .addNewProjectCard .halfRight {
+    width: 48%;
+    margin-left: 2%;
+  }
+  .addNewProjectCard .halfLeft {
+    width: 48%;
+    margin-right: 2%;
+  } */
+  .addNewProjectCard .topRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2%;
+  }
+
+
+
+  .addNewProjectCard .full {
+    width: 100%;
+  }
+
+  .addNewProjectCard button {
+    background-color: transparent;
+    border: 1px solid var(--navtext);
+    display: inline-block;
+    cursor: pointer;
+    color: var(--navtext);
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 5%;
+    margin-top: 20px;
+  }
+
+  .addNewProjectCard button:hover {
+    /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
+    border: 1px solid var(--hover);
+    color: var(--hover);
+  }
+
+  .addNewProjectCard .error {
+    border-color: var(--error);
+  }
+  .addNewProjectCard .error::placeholder {
+    color: var(--error);
   }
 
 @media screen and (max-width: 700px) {
