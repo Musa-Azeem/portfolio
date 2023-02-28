@@ -21,14 +21,20 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
   // const cluster = "https://drive.google.com/uc?export=view&id=142UDLhTMqBkqIbAko2UsowqyvEyf6qJl"
   // https://drive.google.com/uc?export=view&id=[image id]
   return (
-    <section className="projectCard">
-      <img src={ project.imageUrl } alt={ "Image for " + project.title }></img>
-      <h1>{ project.title }</h1>
-      <p>{ project.description }</p>
-      {admin && <div onClick={ handleDelete }>
-        <TrashIcon />
-      </div>}
-    </section>
+    <div className="flipProjectCard">
+      <div className="innerFlipProjectCard">
+        <div className="projectCardFront">
+          <img src={ project.imageUrl } alt={ "Image for " + project.title }></img>
+          <h1>{ project.title }</h1>
+          <p>{ project.description }</p>
+        </div>
+        <div className="projectCardBack">
+          {admin && <div onClick={ handleDelete }>
+            <TrashIcon />
+          </div>}
+        </div>
+      </div>
+    </div>
   )
 }
 

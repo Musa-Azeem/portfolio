@@ -123,6 +123,19 @@ body {
     text-align: center;
   }
 
+.flipProjectCard {
+  background-color: transparent;
+  margin: 50px;
+  padding: 5px;
+  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+}
+
+
+
+
+
+
+
 .projectCard {
   display: flex;
   margin: 50px;
@@ -166,6 +179,17 @@ body {
   .projectCard .icon:hover {
     color: var(--hover);
   }
+
+
+
+
+
+
+
+
+
+
+
 
 .addNewProjectCard {
   margin: 50px;
