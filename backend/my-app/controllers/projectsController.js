@@ -47,7 +47,7 @@ const createProject = async (req, res) => {
     emptyFields.push('projectUrl')
   }
 
-  const newImageUrl = await checkImageUrl(imageUrl)
+  const newImageUrl = checkImageUrl(imageUrl)
   console.log(newImageUrl)
   if (!newImageUrl) {
     // If image URL was not formatted correctly, make it an error field
@@ -72,7 +72,8 @@ const createProject = async (req, res) => {
     const project = await Project.create({
       "title": title, 
       "description": description, 
-      "projectUrl": projectUrl
+      "projectUrl": projectUrl,
+      "imageUrl": newImageUrl
     })
     // TODO version with image url
     res.status(200).json(project) // send back created project and good status
