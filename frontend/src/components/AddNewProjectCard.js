@@ -28,7 +28,12 @@ const AddNewProjectCard = ({ SRV_URL }) => {
     const newImageUrl = formatUrl()
     console.log(newImageUrl)
 
-    const project = {title, description, projectUrl, newImageUrl}
+    const project = {
+      "title": title, 
+      "description": description, 
+      "projectUrl": projectUrl, 
+      "imageUrl": newImageUrl
+    }
 
     // Use fetch API to send post request to add new project to DB
     const response = await fetch(SRV_URL, {

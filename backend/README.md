@@ -16,3 +16,4 @@ Invoke URL is: https://[Rest API ID].execute-api.us-east-2.amazonaws.com/Prod/ap
 ## Local Deployment
 - set env environment variable `AWS=true`
 - go into `my-app` directory and run: `npm run dev`
+- sam local deploy: `sam local start-api`

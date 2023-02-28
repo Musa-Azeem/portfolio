@@ -8,7 +8,6 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
   const { projects, dispatch } = useProjectsContext()
 
   const handleDelete = async () => {
-    console.log("delete")
     // Use Delete API to delete project from DB
     // Use fetch API to send post request to add new workout to DB
     const response = await fetch(`${SRV_URL}/${project._id}`, {
