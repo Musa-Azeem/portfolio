@@ -26,9 +26,9 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
       <img src={ cluster } alt={ "Image for " + project.title }></img>
       <h1>{ project.title }</h1>
       <p>{ project.description }</p>
-      <div onClick={ handleDelete }>
+      {admin && <div onClick={ handleDelete }>
         <TrashIcon />
-      </div>
+      </div>}
     </section>
   )
 }

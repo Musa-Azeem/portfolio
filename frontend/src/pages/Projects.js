@@ -17,7 +17,7 @@ const Projects = () => {
       }
     }
     fetchProjects()
-  }, [dispatch, SRV_URL])
+  }, [projects, dispatch, SRV_URL])
 
   return (
     <div className="projectsPage">
@@ -29,13 +29,36 @@ const Projects = () => {
       }
       <div className="projectsBody">   
         {/* Create a Project Card for each project fetched from DB */}
-        {projects && projects.map((p) => (
+        {/* {projects && projects.map((p) => (
           <ProjectCard 
             key={ p._id } 
             project={ p } 
             admin={ admin } 
             SRV_URL={ SRV_URL} />
-        ))}
+        ))} */}
+
+        { 
+          (() => {
+            if (projects) { 
+              return (
+                projects.map((p) => (
+                  <ProjectCard 
+                    key={ p._id } 
+                    project={ p } 
+                    admin={ admin } 
+                    SRV_URL={ SRV_URL} 
+                  />
+                ))
+              )
+            }
+            else {
+              return (<>
+                <p></p>
+                <p className="loading">Loading Projects...</p>
+              </>)
+            }
+          })()
+        }
       </div>
     </div>
   )
