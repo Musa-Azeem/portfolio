@@ -131,10 +131,12 @@ body {
   perspective: 1000px; /* For 3D effect */
   box-shadow: 3px 0px 4px black;
   transition: height 0.8s;
+  max-height: 200px;
 }
 
   .projectCard:hover {
-    height: 50vh;
+    /* height: 50vh; */
+    max-height: initial;
   }
 
   .innerProjectCard {
