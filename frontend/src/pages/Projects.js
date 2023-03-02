@@ -1,13 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProjectCard from '../components/ProjectCard'
 import AddNewProjectCard from '../components/AddNewProjectCard'
+import EditProject from '../components/EditProject'
 import { useProjectsContext } from '../hooks/useProjectsContext'
-import { EditIcon } from '../components/Icons'
 
 const Projects = () => {
   const admin = true
   const SRV_URL = "https://m5tx556ood.execute-api.us-east-2.amazonaws.com/Prod/api/projects/"
   const { projects, dispatch } = useProjectsContext()
+  const [projectToEdit, setProjectToEdit] = useState(null)
+
+  useEffect(() => {
+    console.log(projectToEdit)
+  },[projectToEdit])
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -25,9 +30,15 @@ const Projects = () => {
       <div className="header">
         <h1>Projects</h1>
       </div>
-      <EditIcon />
       {admin &&
         <AddNewProjectCard SRV_URL={ SRV_URL }/>
+      }
+      { projectToEdit &&
+        <EditProject 
+          SRV_URL={ SRV_URL }
+          project={ projectToEdit }
+          setProjectToEdit={ setProjectToEdit }
+        />
       }
       <div className="projectsBody">   
         {/* Create a Project Card for each project fetched from DB */}
@@ -41,6 +52,7 @@ const Projects = () => {
                     project={ p } 
                     admin={ admin } 
                     SRV_URL={ SRV_URL} 
+                    setProjectToEdit={ setProjectToEdit }
                   />
                 ))
               )

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
 
 
-const ProjectCard = ({ project, admin, SRV_URL }) => {
+const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
 
   const { projects, dispatch } = useProjectsContext()
   const [isHover, setIsHover] = useState(false);
@@ -25,10 +25,6 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
       }
     })
     dispatch({type: "DELETE_PROJECT", payload: project._id})
-  }
-
-  const handleEdit = async () => {
-    return
   }
 
   const getHeight = () => {
@@ -65,11 +61,11 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
               <Link to={ project.projectUrl } target="_blank">
                 <GithubIcon />
               </Link>
-              {/* {admin &&  */}
-                {/* <div onClick={ handleEdit }> */}
+              { admin &&
+                <div onClick={ () => {setProjectToEdit(project)} }>
                   <EditIcon />
-                {/* </div> */}
-              {/* } */}
+                </div>
+              }
             </div>
           </div>
         </div>
