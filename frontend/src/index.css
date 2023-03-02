@@ -214,70 +214,138 @@ body {
   color: var(--navtext);
   box-shadow: 3px 0px 4px black;
   border-radius: 20px;
-}
-
-  .addNewProjectCard h1 {
-    width: 100%;
-    padding: 10px;
-    margin: auto 0px;
-    text-align: center;
   }
 
-  .addNewProjectCard form {
-    margin: 20px;
-  }
+    .addNewProjectCard h1 {
+      width: 100%;
+      padding: 10px;
+      margin: auto 0px;
+      text-align: center;
+    }
 
-  .addNewProjectCard input {
-    box-sizing: border-box;
-    outline: none;
-    padding: 7px;
-    border: none;
-    border-bottom: 1px solid var(--navtext);
-    background: transparent;
-    margin-bottom: 10px;
-    font: 16px Arial, Helvetica, sans-serif;
-    height: 45px;
-    color: var(--navtext)
-  }
+    .addNewProjectCard form {
+      margin: 20px;
+    }
 
-  .addNewProjectCard .topRow {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2%;
-  }
+    .addNewProjectCard input {
+      box-sizing: border-box;
+      outline: none;
+      padding: 7px;
+      border: none;
+      border-bottom: 1px solid var(--navtext);
+      background: transparent;
+      margin-bottom: 10px;
+      font: 16px Arial, Helvetica, sans-serif;
+      height: 45px;
+      color: var(--navtext)
+    }
 
+    .addNewProjectCard .topRow {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2%;
+    }
 
+    .addNewProjectCard .full {
+      width: 100%;
+    }
 
-  .addNewProjectCard .full {
-    width: 100%;
-  }
+    .addNewProjectCard button {
+      background-color: transparent;
+      border: 1px solid var(--navtext);
+      display: inline-block;
+      cursor: pointer;
+      color: var(--navtext);
+      font-size: 14px;
+      padding: 8px 18px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 5%;
+      margin-top: 20px;
+    }
 
-  .addNewProjectCard button {
-    background-color: transparent;
-    border: 1px solid var(--navtext);
-    display: inline-block;
-    cursor: pointer;
+    .addNewProjectCard button:hover {
+      /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
+      border: 1px solid var(--hover);
+      color: var(--hover);
+    }
+
+    .addNewProjectCard .error {
+      border-color: var(--error);
+    }
+    .addNewProjectCard .error::placeholder {
+      color: var(--error);
+    }
+
+  .editProjectCard {
+    margin: 50px;
+    padding: 5px;
+    background-color: var(--sidebg);
     color: var(--navtext);
-    font-size: 14px;
-    padding: 8px 18px;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 5%;
-    margin-top: 20px;
+    box-shadow: 3px 0px 4px black;
+    border-radius: 20px;
   }
 
-  .addNewProjectCard button:hover {
-    /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
-    border: 1px solid var(--hover);
-    color: var(--hover);
-  }
+    .editProjectCard h1 {
+      width: 100%;
+      padding: 10px;
+      margin: auto 0px;
+      text-align: center;
+    }
 
-  .addNewProjectCard .error {
-    border-color: var(--error);
-  }
-  .addNewProjectCard .error::placeholder {
-    color: var(--error);
-  }
+    .editProjectCard form {
+      margin: 20px;
+    }
+
+    .editProjectCard input {
+      box-sizing: border-box;
+      outline: none;
+      padding: 7px;
+      border: none;
+      border-bottom: 1px solid var(--navtext);
+      background: transparent;
+      margin-bottom: 10px;
+      font: 16px Arial, Helvetica, sans-serif;
+      height: 45px;
+      color: var(--navtext)
+    }
+
+    .editProjectCard .topRow {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2%;
+    }
+
+    .editProjectCard .full {
+      width: 100%;
+    }
+
+    .editProjectCard button {
+      background-color: transparent;
+      border: 1px solid var(--navtext);
+      display: inline-block;
+      cursor: pointer;
+      color: var(--navtext);
+      font-size: 14px;
+      padding: 8px 18px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 5%;
+      margin-top: 20px;
+    }
+
+    .editProjectCard button:hover {
+      /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
+      border: 1px solid var(--hover);
+      color: var(--hover);
+    }
+
+    .editProjectCard .error {
+      border-color: var(--error);
+    }
+    .editProjectCard .error::placeholder {
+      color: var(--error);
+    }
 
 @media screen and (max-width: 700px) {
 

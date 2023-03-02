@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { useProjectsContext } from "../hooks/useProjectsContext"
 
 const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
-  const { projects, dispatch } = useProjectsContext()
 
   const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const [description, setDescription] = useState(projectToEdit.description)
   const [projectUrl, setProjectUrl] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [error, setError] = useState(null)
@@ -71,46 +70,48 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
 
   
   return (
-    <section className="EditProjectCard">
-      <h1>Edit Project</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="topRow">
-          <input
-            type="text"
-            onChange={ (e) => setTitle(e.target.value)}
-            value = { title }
-            className={ emptyFields.includes('title') ? 'error halfLeft' : 'halfLeft' }
-            placeholder="Title"
-          />
-          <input
+    <> 
+      {projectToEdit &&
+        <section className="editProjectCard">
+          <h1>{ `Edit Project -- ${projectToEdit.title}` }</h1>
+          <form onSubmit={handleSubmit}>
+            <div className="topRow">
+              <input
+                type="text"
+                onChange={ (e) => setTitle(e.target.value)}
+                value = { title }
+                placeholder="Edit Title"
+              />
+              <input
+                  type="text"
+                  onChange={ (e) => setProjectUrl(e.target.value)}
+                  value = { projectUrl }
+                  placeholder="Edit Project URL"
+              />
+              <input
+                  type="text"
+                  onChange={ (e) => setImageUrl(e.target.value)}
+                  value = { imageUrl }
+                  className={ emptyFields.includes('imageUrl') ? 'error' : '' } // Can have an invalid imageURL
+                  placeholder="Edit Image URL"
+              />
+            </div>
+            <input
               type="text"
-              onChange={ (e) => setProjectUrl(e.target.value)}
-              value = { projectUrl }
-              className={ emptyFields.includes('projectUrl') ? 'error halfRight' : 'halfRight' }
-              placeholder="Project URL"
-          />
-          <input
-              type="text"
-              onChange={ (e) => setImageUrl(e.target.value)}
-              value = { imageUrl }
-              className={ emptyFields.includes('imageUrl') ? 'error' : '' }
-              placeholder="Image URL"
-          />
-        </div>
-        <input
-          type="text"
-          onChange={ (e) => setDescription(e.target.value)}
-          value = { description }
-          className={ emptyFields.includes('description') ? 'error full' : 'full' }
-          placeholder="Description"
-        />
+              onChange={ (e) => setDescription(e.target.value)}
+              value = { description }
+              className={ emptyFields.includes('description') ? 'error full' : 'full' }
+              placeholder="Edit Description"
+            />
 
-      <button>Add Project</button>
+          <button>Add Project</button>
 
-      {/* Output error if there is one */}
-      {error && <div className="error">{ error }</div>}
-      </form>
-    </section>
+          {/* Output error if there is one */}
+          {error && <div className="error">{ error }</div>}
+          </form>
+        </section>
+      }
+    </>
   )
 }
 

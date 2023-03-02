@@ -36,7 +36,7 @@ const Projects = () => {
       { projectToEdit &&
         <EditProject 
           SRV_URL={ SRV_URL }
-          project={ projectToEdit }
+          projectToEdit={ projectToEdit }
           setProjectToEdit={ setProjectToEdit }
         />
       }
