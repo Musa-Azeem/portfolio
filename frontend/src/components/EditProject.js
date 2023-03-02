@@ -28,6 +28,7 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
     const newImageUrl = formatUrl()
 
     const project = {
+      "_id": projectToEdit._id,
       "title": title, 
       "description": description, 
       "projectUrl": projectUrl, 
