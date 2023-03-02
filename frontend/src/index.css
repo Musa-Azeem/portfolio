@@ -125,19 +125,13 @@ body {
 
 .projectCard {
   background-color: var(--sidebg);
-  height: 25vh;
   margin: 25px;
   padding: 5px;
   perspective: 1000px; /* For 3D effect */
   box-shadow: 3px 0px 4px black;
-  transition: height 0.8s;
-  max-height: 200px;
+  transition: height 0.8s, max-height 0.8s;
+  /* height set in ProjectCart.js */
 }
-
-  .projectCard:hover {
-    /* height: 50vh; */
-    max-height: initial;
-  }
 
   .innerProjectCard {
     position: relative;
@@ -188,10 +182,16 @@ body {
   color: var(--navtext);
   transform: rotateY(180deg);
 }
+
+  .projectCardBack .iconsList {
+    display: flex;
+    justify-content: center;
+  }
   .projectCardBack .icon {
     height: 32px;
     width: 32px;
     fill: currentColor;
+    color: var(--navtext);
     margin: 5px;
   }
 
@@ -206,7 +206,6 @@ body {
     text-align: center;
     font-size: 1vw;
   }
-
 
   .addNewProjectCard {
   margin: 50px;
@@ -241,14 +240,6 @@ body {
     color: var(--navtext)
   }
 
-  /* .addNewProjectCard .halfRight {
-    width: 48%;
-    margin-left: 2%;
-  }
-  .addNewProjectCard .halfLeft {
-    width: 48%;
-    margin-right: 2%;
-  } */
   .addNewProjectCard .topRow {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -300,20 +291,6 @@ body {
 
 }
 
-
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-a:active {
-  text-decoration: none;
+a, a:link, a:visited, a:focus, a:hover, a:active{
+  text-decoration:none;
 }

@@ -1,12 +1,19 @@
-import { React, useState } from "react"
+import { React, useState, useEffect, useRef } from "react"
 import { useProjectsContext } from "../hooks/useProjectsContext"
-// import cluster from '../assets/images/cluster.png'
-import { TrashIcon } from "./Icons"
+import { Link } from 'react-router-dom'
+import { GithubIcon, TrashIcon } from "./Icons"
+
 
 const ProjectCard = ({ project, admin, SRV_URL }) => {
 
   const { projects, dispatch } = useProjectsContext()
   const [isHover, setIsHover] = useState(false);
+  const [backHeight, setBackHeight] = useState(0)
+  const backRef = useRef(null)
+  
+  useEffect(() => {
+    setBackHeight(backRef.current.clientHeight)
+  }, [])
 
   const handleDelete = async () => {
     // Use Delete API to delete project from DB
@@ -19,19 +26,22 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
     })
     dispatch({type: "DELETE_PROJECT", payload: project._id})
   }
-  
-  const getOnHoverHeight = () => {
-    // Get height of card to fit description on hover
-    console.log(project.description.length)
-    return `${.2*project.description.length}vh`
+
+  const getHeight = () => {
+    if (isHover) {
+      return `${20+backHeight}px`
+    }
+    else {
+      const maxHeight = 160;
+      return 25*0.01*window.innerHeight <= maxHeight ? '25vh' : `${maxHeight}px`
+    }
   }
-  // const cluster = "https://drive.google.com/uc?export=view&id=142UDLhTMqBkqIbAko2UsowqyvEyf6qJl"
-  // https://drive.google.com/uc?export=view&id=[image id]
+
   return (
     <div className="projectCard" 
       onMouseEnter={() => { setIsHover(true)} }
       onMouseLeave={() => { setIsHover(false)} } 
-      style = { {height: isHover ? getOnHoverHeight() : ""} }
+      style = { {height: getHeight()} }
     >
       <div className="innerProjectCard">
         <div className="projectCardFront">
@@ -39,10 +49,19 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
           <h1>{ project.title }</h1>
         </div>
         <div className="projectCardBack">
-          <p>{ project.description }</p>
-          {admin && <div onClick={ handleDelete }>
-            <TrashIcon />
-          </div>}
+          <div ref={ backRef }>
+            <p>{ project.description }</p>
+            <div className="iconsList">
+              {admin && 
+                <div onClick={ handleDelete }>
+                  <TrashIcon />
+                </div>
+              }
+              <Link to={ project.projectUrl } target="_blank">
+                <GithubIcon />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
