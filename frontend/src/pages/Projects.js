@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import ProjectCard from '../components/ProjectCard'
 import AddNewProjectCard from '../components/AddNewProjectCard'
 import { useProjectsContext } from '../hooks/useProjectsContext'
+import { EditIcon } from '../components/Icons'
 
 const Projects = () => {
   const admin = true
@@ -24,19 +25,12 @@ const Projects = () => {
       <div className="header">
         <h1>Projects</h1>
       </div>
+      <EditIcon />
       {admin &&
         <AddNewProjectCard SRV_URL={ SRV_URL }/>
       }
       <div className="projectsBody">   
         {/* Create a Project Card for each project fetched from DB */}
-        {/* {projects && projects.map((p) => (
-          <ProjectCard 
-            key={ p._id } 
-            project={ p } 
-            admin={ admin } 
-            SRV_URL={ SRV_URL} />
-        ))} */}
-
         { 
           (() => {
             if (projects) { 

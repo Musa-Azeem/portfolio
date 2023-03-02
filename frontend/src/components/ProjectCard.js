@@ -1,7 +1,7 @@
 import { React, useState, useEffect, useRef } from "react"
 import { useProjectsContext } from "../hooks/useProjectsContext"
 import { Link } from 'react-router-dom'
-import { GithubIcon, TrashIcon } from "./Icons"
+import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
 
 
 const ProjectCard = ({ project, admin, SRV_URL }) => {
@@ -27,13 +27,18 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
     dispatch({type: "DELETE_PROJECT", payload: project._id})
   }
 
+  const handleEdit = async () => {
+    return
+  }
+
   const getHeight = () => {
     if (isHover) {
       return `${20+backHeight}px`
     }
     else {
+      // if (25vh less than 160px) -> 25vh, else -> 160px
       const maxHeight = 160;
-      return 25*0.01*window.innerHeight <= maxHeight ? '25vh' : `${maxHeight}px`
+      return 25*(0.01*window.innerHeight) <= maxHeight ? '25vh' : `${maxHeight}px`
     }
   }
 
@@ -60,6 +65,11 @@ const ProjectCard = ({ project, admin, SRV_URL }) => {
               <Link to={ project.projectUrl } target="_blank">
                 <GithubIcon />
               </Link>
+              {/* {admin &&  */}
+                {/* <div onClick={ handleEdit }> */}
+                  <EditIcon />
+                {/* </div> */}
+              {/* } */}
             </div>
           </div>
         </div>
