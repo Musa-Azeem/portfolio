@@ -3,13 +3,14 @@ import { useProjectsContext } from "../hooks/useProjectsContext"
 
 const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
 
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState(projectToEdit.title)
   const [description, setDescription] = useState(projectToEdit.description)
-  const [projectUrl, setProjectUrl] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
+  const [projectUrl, setProjectUrl] = useState(projectToEdit.projectUrl)
+  const [imageUrl, setImageUrl] = useState(projectToEdit.imageUrl)
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])  // Which fields were empty after form submission
 
+  const {projects, dispatch} = useProjectsContext()
   function formatUrl() {
     // Format google drive image URL to enable embedding
     if (imageUrl.endsWith("view?usp=sharing")) {
@@ -23,19 +24,17 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
   const handleSubmit = async (e) => {
     // e is form submission event
     e.preventDefault()  // prevent page from refreshing on form submit
-    setProjectToEdit(null)
 
-    // const newImageUrl = formatUrl()
-    // console.log(newImageUrl)
+    const newImageUrl = formatUrl()
 
-    // const project = {
-    //   "title": title, 
-    //   "description": description, 
-    //   "projectUrl": projectUrl, 
-    //   "imageUrl": newImageUrl
-    // }
+    const project = {
+      "title": title, 
+      "description": description, 
+      "projectUrl": projectUrl, 
+      "imageUrl": newImageUrl
+    }
 
-    // // Use fetch API to send post request to add new project to DB
+    // Use fetch API to send post request to add new project to DB
     // const response = await fetch(SRV_URL, {
     //   method: 'POST',
     //   body: JSON.stringify(project),   // send project object as json string as expected
@@ -63,9 +62,12 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
     //   setProjectUrl('')
     //   setImageUrl('')
 
-    //   // Now that new project is added to DB, update local projects in context
-    //   dispatch({type: 'CREATE_PROJECT', payload: json})
+      // Now that new project is added to DB, update local projects in context
+      dispatch({type: 'UPDATE_PROJECT', payload: project})
     // }
+
+    // Remove edit card
+    setProjectToEdit(null)
   }
 
   

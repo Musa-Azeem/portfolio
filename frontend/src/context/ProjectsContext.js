@@ -33,6 +33,20 @@ export const projectsReducer = (state, action) => {
           return p._id !== action.payload._id
         })
       }
+    case 'UPDATE_PROJECT':
+      // payload will be a project with updated fields
+      for (var key in state.projects) {
+        // Update the project that matches the id of the payload
+        console.log(state.projects[key])
+
+        // if (state.projects[key]._id === action.payload._id) {
+        //   console.log(state.projects[key])
+        // }
+      }
+      return {
+        projects: state.projects
+      }
+
     default:
       return state
   }
