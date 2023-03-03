@@ -24,7 +24,7 @@ const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
         'Content-Type': 'application/json'
       }
     })
-    dispatch({type: "DELETE_PROJECT", payload: project._id})
+    dispatch({type: "DELETE_PROJECT", payload: project})
   }
 
   const getHeight = () => {
