@@ -11,10 +11,6 @@ const Projects = () => {
   const [projectToEdit, setProjectToEdit] = useState(null)
 
   useEffect(() => {
-    console.log(projectToEdit)
-  },[projectToEdit])
-
-  useEffect(() => {
     const fetchProjects = async () => {
       const response = await fetch(SRV_URL)
       const json = await response.json()
@@ -23,7 +19,7 @@ const Projects = () => {
       }
     }
     fetchProjects()
-  }, [projects, dispatch, SRV_URL])
+  }, [dispatch, SRV_URL])
 
   return (
     <div className="projectsPage">
