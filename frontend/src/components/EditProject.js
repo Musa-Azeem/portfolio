@@ -27,12 +27,13 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
 
     const newImageUrl = formatUrl()
 
+    // Copy meta contents of projectToEdit but update input fields
     const project = {
-      "_id": projectToEdit._id,
-      "title": title, 
-      "description": description, 
-      "projectUrl": projectUrl, 
-      "imageUrl": newImageUrl
+      ...projectToEdit,
+      title: title, 
+      description: description, 
+      projectUrl: projectUrl, 
+      imageUrl: newImageUrl
     }
 
     // Use fetch API to send post request to add new project to DB
@@ -107,7 +108,7 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
               placeholder="Edit Description"
             />
 
-          <button>Add Project</button>
+          <button>Save Change</button>
 
           {/* Output error if there is one */}
           {error && <div className="error">{ error }</div>}
