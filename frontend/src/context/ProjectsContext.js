@@ -41,6 +41,7 @@ export const projectsReducer = (state, action) => {
           state.projects[key] = {...state.projects[key], ...action.payload}
         }
       }
+      console.log(state.projects)
       return {
         projects: state.projects
       }
