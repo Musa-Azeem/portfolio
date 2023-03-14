@@ -14,6 +14,6 @@ Invoke URL is: https://[Rest API ID].execute-api.us-east-2.amazonaws.com/Prod/ap
 - to deploy to existing services: `./deploy.sh`
 
 ## Local Deployment
-- set env environment variable `AWS=true`
+- set env environment variable `AWS=false`
 - go into `my-app` directory and run: `npm run dev`
 - sam local deploy: `sam local start-api`

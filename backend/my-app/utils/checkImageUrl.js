@@ -1,7 +1,17 @@
 const request = require('request');
 
 module.exports = function (imageUrl) {
-  // for now, just return imageUrl
+  // if imageUrl is empty or invalid, replace it with default
+
+  const defaultUrl = "https://drive.google.com/uc?export=view&id=1BY5HC2nTQqxw26nOzB_AQ8Yv3FS_hzpc"
+
+  // If url empty, return default
+  if (!imageUrl) {
+    return defaultUrl
+  }
+
+  // If url is invalid, send error - TODO
+  
   return imageUrl
 }
 //   const defaultUrl = "https://drive.google.com/uc?export=view&id=1BY5HC2nTQqxw26nOzB_AQ8Yv3FS_hzpc"
