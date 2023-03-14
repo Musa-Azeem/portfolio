@@ -6,7 +6,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 
 
 const Navbar = () => {
-  const { dispatch } = useAuthContext()
+  const { user, dispatch } = useAuthContext()
 
   const logout = () => {
     // remove user from storage
@@ -62,11 +62,13 @@ const Navbar = () => {
           <h1>Projects</h1>
         </Link></li>
 
-        <li>
-          <button onClick={logout}>
-            Logout
-          </button>
-        </li>
+        { user &&
+          <li>
+            <button onClick={logout}>
+              Logout
+            </button>
+          </li>
+        }
       </ul>
     </section>
   )
