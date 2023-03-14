@@ -5,10 +5,11 @@ import EditProject from '../components/EditProject'
 import { useProjectsContext } from '../hooks/useProjectsContext'
 import { SRV_URL } from '../config'
 import path from 'path-browserify'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const Projects = () => {
-  const admin = true
   const { projects, dispatch } = useProjectsContext()
+  const { user } = useAuthContext()
   const [projectToEdit, setProjectToEdit] = useState(null)
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const Projects = () => {
       <div className="header">
         <h1>Projects</h1>
       </div>
-      {admin &&
+      {user &&
         <AddNewProjectCard SRV_URL={ SRV_URL }/>
       }
       { projectToEdit &&
@@ -47,7 +48,6 @@ const Projects = () => {
                   <ProjectCard 
                     key={ p._id } 
                     project={ p } 
-                    admin={ admin } 
                     SRV_URL={ SRV_URL} 
                     setProjectToEdit={ setProjectToEdit }
                   />

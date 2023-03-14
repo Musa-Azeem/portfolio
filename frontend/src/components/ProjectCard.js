@@ -2,11 +2,13 @@ import { React, useState, useEffect, useRef } from "react"
 import { useProjectsContext } from "../hooks/useProjectsContext"
 import { Link } from 'react-router-dom'
 import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
-const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
+const ProjectCard = ({ project, SRV_URL, setProjectToEdit }) => {
 
   const { projects, dispatch } = useProjectsContext()
+  const { user } = useAuthContext()
   const [isHover, setIsHover] = useState(false);
   const [backHeight, setBackHeight] = useState(0)
   const backRef = useRef(null)
@@ -53,7 +55,7 @@ const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
           <div ref={ backRef }>
             <p>{ project.description }</p>
             <div className="iconsList">
-              {admin && 
+              {user && 
                 <div onClick={ handleDelete }>
                   <TrashIcon />
                 </div>
@@ -61,7 +63,7 @@ const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
               <Link to={ project.projectUrl } target="_blank">
                 <GithubIcon />
               </Link>
-              { admin &&
+              { user &&
                 <div onClick={ () => {setProjectToEdit(project)} }>
                   <EditIcon />
                 </div>
