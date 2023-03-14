@@ -29,7 +29,7 @@ const Projects = () => {
         <h1>Projects</h1>
       </div>
       {user &&
-        <AddNewProjectCard SRV_URL={ SRV_URL }/>
+        <AddNewProjectCard />
       }
       { user && projectToEdit &&
         <EditProject 
