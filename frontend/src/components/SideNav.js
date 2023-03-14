@@ -2,8 +2,20 @@ import { Link } from 'react-router-dom'
 import head from '../assets/images/head.jpg'
 import resume from '../assets/files/Resume.pdf'
 import { LinkedInIcon, GithubIcon, MailIcon, ResumeIcon, HouseIcon, PersonIcon, CodeIcon } from './Icons'
+import { useAuthContext } from '../hooks/useAuthContext'
+
 
 const Navbar = () => {
+  const { dispatch } = useAuthContext()
+
+  const logout = () => {
+    // remove user from storage
+    localStorage.removeItem('user')
+
+    // dispatch logout action
+    dispatch({ type: 'LOGOUT' })
+  }
+
   return (
     <section className="sidenav">
 
@@ -49,6 +61,12 @@ const Navbar = () => {
           <CodeIcon />
           <h1>Projects</h1>
         </Link></li>
+
+        <li>
+          <button onClick={logout}>
+            Logout
+          </button>
+        </li>
       </ul>
     </section>
   )

@@ -3,16 +3,17 @@ import ProjectCard from '../components/ProjectCard'
 import AddNewProjectCard from '../components/AddNewProjectCard'
 import EditProject from '../components/EditProject'
 import { useProjectsContext } from '../hooks/useProjectsContext'
+import { SRV_URL } from '../config'
+import path from 'path-browserify'
 
 const Projects = () => {
   const admin = true
-  const SRV_URL = "https://m5tx556ood.execute-api.us-east-2.amazonaws.com/Prod/api/projects/"
   const { projects, dispatch } = useProjectsContext()
   const [projectToEdit, setProjectToEdit] = useState(null)
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await fetch(SRV_URL)
+      const response = await fetch(path.join(SRV_URL, 'public-projects'))
       const json = await response.json()
       if (response.ok) {
         dispatch({type: 'SET_PROJECTS', payload: json})
