@@ -31,7 +31,7 @@ const Projects = () => {
       {user &&
         <AddNewProjectCard SRV_URL={ SRV_URL }/>
       }
-      { projectToEdit &&
+      { user && projectToEdit &&
         <EditProject 
           SRV_URL={ SRV_URL }
           projectToEdit={ projectToEdit }

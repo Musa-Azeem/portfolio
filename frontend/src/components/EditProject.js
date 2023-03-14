@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useProjectsContext } from "../hooks/useProjectsContext"
 
 const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
@@ -20,6 +20,16 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
     }
     return imageUrl
   }
+
+  useEffect(() => {
+    // Update form fields when project to edit changes
+    setTitle(projectToEdit.title)
+    setDescription(projectToEdit.description)
+    setProjectUrl(projectToEdit.projectUrl)
+    setImageUrl(projectToEdit.imageUrl)
+    setError(null)
+    setEmptyFields([])
+  }, [projectToEdit])
 
   const handleSubmit = async (e) => {
     // e is form submission event
@@ -108,11 +118,15 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
               placeholder="Edit Description"
             />
 
-          <button>Save Change</button>
+            <button>Save Change</button>
 
-          {/* Output error if there is one */}
-          {error && <div className="error">{ error }</div>}
+            {/* Output error if there is one */}
+            {error && <div className="error">{ error }</div>}
           </form>
+
+          <button onClick={ () => {setProjectToEdit(null)} }>
+            Cancel
+          </button>
         </section>
       }
     </>

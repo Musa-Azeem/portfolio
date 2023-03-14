@@ -44,26 +44,30 @@ const Signup = () => {
   }
 
   return (
-    <form className="signup" onSubmit={handleSubmit}>
-      <h3>Sign Up</h3>
-      
-      <label>Email address:</label>
-      <input 
-        type="email" 
-        onChange={(e) => setEmail(e.target.value)} 
-        value={email} 
-      />
-      <label>Password:</label>
-      <input 
-        type="password" 
-        onChange={(e) => setPassword(e.target.value)} 
-        value={password} 
-      />
+    <section className="loginCard">
+      <form onSubmit={handleSubmit}>
+        <h1>Sign Up</h1>
+        
+        <div className="row">
+          <input 
+            type="email" 
+            onChange={(e) => setEmail(e.target.value)} 
+            value={email} 
+            placeholder="Email"
+          />
+          <input 
+            type="password" 
+            onChange={(e) => setPassword(e.target.value)} 
+            value={password} 
+            placeholder="Password"
+          />
+        </div>
 
-      {/* disable button if loading - show error if there is one */}
-      <button disabled={isLoading}>Sign up</button>
-      {error && <div className="error">{error}</div>}
-    </form>
+        {/* disable button if loading - show error if there is one */}
+        <button disabled={isLoading}>Sign up</button>
+        {error && <div className="error">{ error }</div>}
+      </form>
+    </section>
   )
 }
 
