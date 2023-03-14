@@ -36,6 +36,11 @@ const loginUser = async (req, res) => {
 const signupUser = async (req, res) => {
   // req should include new user's email and password
 
+  // If signing up users is disabled, return error
+  if (process.env.SIGNUP_DISABLED == 'true') {
+    res.status(400).json({error: "New Users are currently disabled"})
+  }
+
   const {email, password} = req.body
 
   try {
