@@ -3,10 +3,13 @@ const Project = require('../models/projectModel')
 const checkImageUrl = require('../utils/checkImageUrl')
 
 
-// get all projects
-const getProjects = async (req, res) => {     // asynchronous - wait for response from DB
-  const projects = await Project.find({})     // empty object to search for to get all projects (put something like {reps: 20} for object if searching)
-      .sort({createdAt: -1})                  // Sort by date create in descending order
+// get all projects for logged in user
+const getProjects = async (req, res) => {
+  user_id = req.user._id
+
+  // Find all projects created by this user
+  const projects = await Project.find({user_id})
+      .sort({createdAt: -1})                  // Sort by date created in descending order
 
   res.status(200).json(projects)              // Send back json object with all projects
 }
@@ -67,11 +70,14 @@ const createProject = async (req, res) => {
 
   // Create new project document in DB
   try {
+    const user_id = req.user._id
+
     const project = await Project.create({
       "title": title, 
       "description": description, 
       "projectUrl": projectUrl,
-      "imageUrl": newImageUrl
+      "imageUrl": newImageUrl,
+      "user_id": user_id
     })
     // TODO version with image url
     res.status(200).json(project) // send back created project and good status

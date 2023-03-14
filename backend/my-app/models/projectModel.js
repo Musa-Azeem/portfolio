@@ -19,6 +19,10 @@ const projectSchema = new Schema({
   imageUrl: {
     type: String,
     requred: true
+  },
+  user_id: {  // every workout doc must be associated with a user
+    type: String,
+    required: true
   }
 })
 
