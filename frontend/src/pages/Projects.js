@@ -21,7 +21,7 @@ const Projects = () => {
       }
     }
     fetchProjects()
-  }, [dispatch, SRV_URL])
+  }, [dispatch])
 
   return (
     <div className="projectsPage">
@@ -33,7 +33,6 @@ const Projects = () => {
       }
       { user && projectToEdit &&
         <EditProject 
-          SRV_URL={ SRV_URL }
           projectToEdit={ projectToEdit }
           setProjectToEdit={ setProjectToEdit }
         />
@@ -48,7 +47,6 @@ const Projects = () => {
                   <ProjectCard 
                     key={ p._id } 
                     project={ p } 
-                    SRV_URL={ SRV_URL} 
                     setProjectToEdit={ setProjectToEdit }
                   />
                 ))

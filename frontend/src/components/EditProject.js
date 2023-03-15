@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import path from 'path-browserify'
 import { useProjectsContext } from "../hooks/useProjectsContext"
+import { SRV_URL } from '../config'
 
-const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
+const EditProjectCard = ({ projectToEdit, setProjectToEdit }) => {
 
   const [title, setTitle] = useState(projectToEdit.title)
   const [description, setDescription] = useState(projectToEdit.description)
@@ -46,33 +48,34 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
       imageUrl: newImageUrl
     }
 
-    // Use fetch API to send post request to add new project to DB
-    // const response = await fetch(SRV_URL, {
-    //   method: 'POST',
-    //   body: JSON.stringify(project),   // send project object as json string as expected
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // })
+    // Send modified project to server
+    const response = await fetch(path.join(SRV_URL, 'projects'), {
+      method: 'PATCH',
+      body: JSON.stringify(project),   // send project object as json string as expected
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
 
-    // // Check response 
-    // // response object is new project or error
-    // const json = await response.json() 
-    // if (!response.ok) {
-    //   setError(json.error)
-    //   setEmptyFields(json.emptyFields)
-    // }
+    // Check response 
+    // response object is new project or error
+    const json = await response.json() 
+    if (!response.ok) {
+      setError(json.error)
+      setEmptyFields(json.emptyFields)
+    }
 
-    // if (response.ok) {
-    //   setError(null)
-    //   setEmptyFields([])
-    //   console.log('new project added', json)
+    if (response.ok) {
+      setError(null)
+      setEmptyFields([])
+      console.log('new project added', json)
 
-    //   // Reset all form states
-    //   setTitle('')
-    //   setDescription('')
-    //   setProjectUrl('')
-    //   setImageUrl('')
+      // Reset all form states
+      setTitle('')
+      setDescription('')
+      setProjectUrl('')
+      setImageUrl('')
+      setEmptyFields([])
 
       // Now that new project is added to DB, update local projects in context
       dispatch({type: 'UPDATE_PROJECT', payload: project})
@@ -80,8 +83,8 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
 
     // Remove edit card
     setProjectToEdit(null)
+    }
   }
-
   
   return (
     <> 
@@ -114,7 +117,6 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
               type="text"
               onChange={ (e) => setDescription(e.target.value)}
               value = { description }
-              className={ emptyFields.includes('description') ? 'error full' : 'full' }
               placeholder="Edit Description"
             />
 
@@ -133,4 +135,4 @@ const AddNewProjectCard = ({ SRV_URL, projectToEdit, setProjectToEdit }) => {
   )
 }
 
-export default AddNewProjectCard
+export default EditProjectCard

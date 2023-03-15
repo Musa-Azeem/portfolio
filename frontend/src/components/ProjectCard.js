@@ -3,11 +3,11 @@ import { useProjectsContext } from "../hooks/useProjectsContext"
 import { Link } from 'react-router-dom'
 import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
 import { useAuthContext } from '../hooks/useAuthContext'
+import { SRV_URL } from '../config'
 
+const ProjectCard = ({ project, setProjectToEdit }) => {
 
-const ProjectCard = ({ project, SRV_URL, setProjectToEdit }) => {
-
-  const { projects, dispatch } = useProjectsContext()
+  const { dispatch } = useProjectsContext()
   const { user } = useAuthContext()
   const [isHover, setIsHover] = useState(false);
   const [backHeight, setBackHeight] = useState(0)
