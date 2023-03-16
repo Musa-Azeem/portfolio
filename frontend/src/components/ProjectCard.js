@@ -6,7 +6,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import { SRV_URL } from '../config'
 import path from 'path-browserify'
 
-const ProjectCard = ({ project, setProjectToEdit }) => {
+const ProjectCard = ({ project, handleEditClick }) => {
 
   const { dispatch } = useProjectsContext()
   const { user } = useAuthContext()
@@ -66,7 +66,7 @@ const ProjectCard = ({ project, setProjectToEdit }) => {
                 <GithubIcon />
               </Link>
               { user &&
-                <div onClick={ () => {setProjectToEdit(project)} }>
+                <div onClick={ () => { handleEditClick(project) } }>
                   <EditIcon />
                 </div>
               }

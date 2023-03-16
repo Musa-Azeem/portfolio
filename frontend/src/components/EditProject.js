@@ -4,7 +4,7 @@ import { useProjectsContext } from "../hooks/useProjectsContext"
 import { SRV_URL } from '../config'
 import { useAuthContext } from "../hooks/useAuthContext";
 
-const EditProjectCard = ({ projectToEdit, setProjectToEdit, ref }) => {
+const EditProjectCard = ({ projectToEdit, setProjectToEdit }) => {
   const { user } = useAuthContext()
 
   const [title, setTitle] = useState(projectToEdit.title)
@@ -92,8 +92,8 @@ const EditProjectCard = ({ projectToEdit, setProjectToEdit, ref }) => {
   return (
     <> 
       {projectToEdit &&
-        <section className="editProjectCard" ref={ ref }>
-          <h1>{ `Edit Project -- ${projectToEdit.title}` }</h1>
+        <section className="editProjectCard">
+          <h1>{ `Edit Project — ${projectToEdit.title}` }</h1>
           <form onSubmit={handleSubmit}>
             <div className="topRow">
               <input
@@ -121,17 +121,21 @@ const EditProjectCard = ({ projectToEdit, setProjectToEdit, ref }) => {
               onChange={ (e) => setDescription(e.target.value)}
               value = { description }
               placeholder="Edit Description"
+              className="full"
             />
 
             <button>Save Change</button>
+            <button type="button" onClick={ () => {setProjectToEdit(null)} }>
+              Cancel
+            </button>
 
             {/* Output error if there is one */}
             {error && <div className="error">{ error }</div>}
           </form>
 
-          <button onClick={ () => {setProjectToEdit(null)} }>
+          {/* <button onClick={ () => {setProjectToEdit(null)} }>
             Cancel
-          </button>
+          </button> */}
         </section>
       }
     </>

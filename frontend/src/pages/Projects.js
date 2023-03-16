@@ -25,6 +25,13 @@ const Projects = () => {
     fetchProjects()
   }, [dispatch])
 
+  const handleEditClick = (project) => {
+    setProjectToEdit(project)
+    if (editProjectRef && editProjectRef.current) {
+      editProjectRef.current.scrollIntoView({behavior: "smooth"})
+    }
+  }
+
   return (
     <div className="projectsPage">
       <div className="header">
@@ -33,13 +40,14 @@ const Projects = () => {
       {user &&
         <AddNewProjectCard />
       }
-      { user && projectToEdit &&
-        <EditProject 
-          projectToEdit={ projectToEdit }
-          setProjectToEdit={ setProjectToEdit }
-          ref={ editProjectRef }
-        />
-      }
+      <div ref={ editProjectRef }>
+        { user && projectToEdit &&
+          <EditProject 
+            projectToEdit={ projectToEdit }
+            setProjectToEdit={ setProjectToEdit }
+          />
+        }
+      </div>
       <div className="projectsBody">   
         {/* Create a Project Card for each project fetched from DB */}
         { 
@@ -50,8 +58,7 @@ const Projects = () => {
                   <ProjectCard 
                     key={ p._id } 
                     project={ p } 
-                    setProjectToEdit={ setProjectToEdit }
-                    editProjectRef={ editProjectRef }
+                    handleEditClick={ handleEditClick }
                   />
                 ))
               )

@@ -9,6 +9,10 @@
   --error: #e7195a;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--bg);
   margin: 0;
@@ -345,21 +349,7 @@ body {
       text-transform: uppercase;
       border-radius: 5%;
       margin-top: 20px;
-    }
-
-    .editProjectCard > button {
-      background-color: transparent;
-      border: 1px solid var(--navtext);
-      display: inline-block;
-      cursor: pointer;
-      color: var(--navtext);
-      font-size: 14px;
-      padding: 8px 18px;
-      text-decoration: none;
-      text-transform: uppercase;
-      border-radius: 5%;
-      margin-left: 20px;
-      margin-bottom: 10px;
+      margin-right: 20px;
     }
 
     .editProjectCard button:hover {
