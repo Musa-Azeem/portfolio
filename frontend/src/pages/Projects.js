@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ProjectCard from '../components/ProjectCard'
 import AddNewProjectCard from '../components/AddNewProjectCard'
 import EditProject from '../components/EditProject'
@@ -11,6 +11,8 @@ const Projects = () => {
   const { projects, dispatch } = useProjectsContext()
   const { user } = useAuthContext()
   const [projectToEdit, setProjectToEdit] = useState(null)
+
+  const editProjectRef = useRef(null)
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -35,6 +37,7 @@ const Projects = () => {
         <EditProject 
           projectToEdit={ projectToEdit }
           setProjectToEdit={ setProjectToEdit }
+          ref={ editProjectRef }
         />
       }
       <div className="projectsBody">   
@@ -48,6 +51,7 @@ const Projects = () => {
                     key={ p._id } 
                     project={ p } 
                     setProjectToEdit={ setProjectToEdit }
+                    editProjectRef={ editProjectRef }
                   />
                 ))
               )
