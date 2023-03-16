@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useProjectsContext } from "../hooks/useProjectsContext"
+import { SRV_URL } from '../config'
+import path from 'path-browserify'
+import { useAuthContext } from "../hooks/useAuthContext"
 
-const AddNewProjectCard = ({ SRV_URL }) => {
+const AddNewProjectCard = () => {
   const { projects, dispatch } = useProjectsContext()
+  const { user } = useAuthContext()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -36,11 +40,12 @@ const AddNewProjectCard = ({ SRV_URL }) => {
     }
 
     // Use fetch API to send post request to add new project to DB
-    const response = await fetch(SRV_URL, {
+    const response = await fetch(path.join(SRV_URL, 'projects'), {
       method: 'POST',
       body: JSON.stringify(project),   // send project object as json string as expected
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
 

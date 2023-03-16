@@ -2,11 +2,14 @@ import { React, useState, useEffect, useRef } from "react"
 import { useProjectsContext } from "../hooks/useProjectsContext"
 import { Link } from 'react-router-dom'
 import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
+import { useAuthContext } from '../hooks/useAuthContext'
+import { SRV_URL } from '../config'
+import path from 'path-browserify'
 
+const ProjectCard = ({ project, setProjectToEdit }) => {
 
-const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
-
-  const { projects, dispatch } = useProjectsContext()
+  const { dispatch } = useProjectsContext()
+  const { user } = useAuthContext()
   const [isHover, setIsHover] = useState(false);
   const [backHeight, setBackHeight] = useState(0)
   const backRef = useRef(null)
@@ -18,10 +21,11 @@ const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
   const handleDelete = async () => {
     // Use Delete API to delete project from DB
     // Use fetch API to send post request to add new workout to DB
-    const response = await fetch(`${SRV_URL}/${project._id}`, {
+    const response = await fetch(path.join(SRV_URL, "projects", project._id), {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
     dispatch({type: "DELETE_PROJECT", payload: project})
@@ -53,7 +57,7 @@ const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
           <div ref={ backRef }>
             <p>{ project.description }</p>
             <div className="iconsList">
-              {admin && 
+              {user && 
                 <div onClick={ handleDelete }>
                   <TrashIcon />
                 </div>
@@ -61,7 +65,7 @@ const ProjectCard = ({ project, admin, SRV_URL, setProjectToEdit }) => {
               <Link to={ project.projectUrl } target="_blank">
                 <GithubIcon />
               </Link>
-              { admin &&
+              { user &&
                 <div onClick={ () => {setProjectToEdit(project)} }>
                   <EditIcon />
                 </div>

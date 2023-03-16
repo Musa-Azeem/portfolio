@@ -97,6 +97,19 @@ body {
     color: var(--hover);
   }
 
+  .sidenav button {
+    background-color: transparent;
+    border: 1px solid var(--navtext);
+    cursor: pointer;
+    color: var(--navtext);
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 5%;
+    margin: 0px 30px 10px 30px;
+  }
+
 /* Pages */
 .pages {
   margin-left: 265px;   /* Same as the width of the sidebar + margin */
@@ -320,7 +333,7 @@ body {
       width: 100%;
     }
 
-    .editProjectCard button {
+    .editProjectCard form button {
       background-color: transparent;
       border: 1px solid var(--navtext);
       display: inline-block;
@@ -334,6 +347,21 @@ body {
       margin-top: 20px;
     }
 
+    .editProjectCard > button {
+      background-color: transparent;
+      border: 1px solid var(--navtext);
+      display: inline-block;
+      cursor: pointer;
+      color: var(--navtext);
+      font-size: 14px;
+      padding: 8px 18px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 5%;
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
     .editProjectCard button:hover {
       /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
       border: 1px solid var(--hover);
@@ -344,6 +372,74 @@ body {
       border-color: var(--error);
     }
     .editProjectCard .error::placeholder {
+      color: var(--error);
+    }
+
+
+
+.loginCard {
+  margin: 50px;
+  padding: 5px;
+  background-color: var(--sidebg);
+  color: var(--navtext);
+  box-shadow: 3px 0px 4px black;
+  border-radius: 20px;
+  }
+
+    .loginCard h1 {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0px;
+    }
+
+    .loginCard form {
+      margin: 20px;
+    }
+
+    .loginCard input {
+      box-sizing: border-box;
+      outline: none;
+      padding: 7px;
+      border: none;
+      border-bottom: 1px solid var(--navtext);
+      background: transparent;
+      margin-bottom: 10px;
+      font: 16px Arial, Helvetica, sans-serif;
+      height: 45px;
+      color: var(--navtext)
+    }
+
+    .loginCard .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2%;
+    }
+
+    .loginCard button {
+      background-color: transparent;
+      border: 1px solid var(--navtext);
+      display: inline-block;
+      cursor: pointer;
+      color: var(--navtext);
+      font-size: 14px;
+      padding: 8px 18px;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 5%;
+      margin-top: 20px;
+    }
+
+    .loginCard button:hover {
+      /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
+      border: 1px solid var(--hover);
+      color: var(--hover);
+    }
+
+    .loginCard .error {
+      border-color: var(--error);
+      margin-top: 10px;
+    }
+    .loginCard .error::placeholder {
       color: var(--error);
     }
 

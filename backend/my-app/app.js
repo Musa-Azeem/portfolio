@@ -3,6 +3,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');
 const projectsRoutes = require('./routes/projectRoutes')
+const userRoutes = require('./routes/userRoutes')
+const publicProjectsRoutes = require('./routes/publicProjectsRoutes')
 
 // Set deployment mode to AWS ('true') or local ('false') - default AWS
 var AWS = true
@@ -26,6 +28,8 @@ app.use((req, res, next) => {   // request, response, next middleware function
 
 // use routes relative to /api/projects/
 app.use('/api/projects/', projectsRoutes)
+app.use('/api/user/', userRoutes)
+app.use('/api/public-projects/', publicProjectsRoutes)
 
 app.get('/api', (req, res) => {    // request, response
     res.json({mssg: 'Welcome to the Api'})
