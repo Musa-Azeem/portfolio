@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useProjectsContext } from "../hooks/useProjectsContext"
 import { SRV_URL } from '../config'
 import path from 'path-browserify'
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const AddNewProjectCard = () => {
   const { projects, dispatch } = useProjectsContext()
+  const { user } = useAuthContext()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -42,7 +44,8 @@ const AddNewProjectCard = () => {
       method: 'POST',
       body: JSON.stringify(project),   // send project object as json string as expected
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
 

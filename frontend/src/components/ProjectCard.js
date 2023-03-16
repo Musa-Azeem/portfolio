@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
 import { useAuthContext } from '../hooks/useAuthContext'
 import { SRV_URL } from '../config'
+import path from 'path-browserify'
 
 const ProjectCard = ({ project, setProjectToEdit }) => {
 
@@ -20,10 +21,11 @@ const ProjectCard = ({ project, setProjectToEdit }) => {
   const handleDelete = async () => {
     // Use Delete API to delete project from DB
     // Use fetch API to send post request to add new workout to DB
-    const response = await fetch(`${SRV_URL}/${project._id}`, {
+    const response = await fetch(path.join(SRV_URL, "projects", project._id), {
       method: 'DELETE',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
     dispatch({type: "DELETE_PROJECT", payload: project})
