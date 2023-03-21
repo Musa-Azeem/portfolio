@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <section className="loginCard">
       <form className="login" onSubmit={handleSubmit}>
-        <h1>Log In</h1>
+        <h1>Developer Log In</h1>
         
         <div className="row">
           <input 

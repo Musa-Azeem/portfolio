@@ -17,29 +17,10 @@ function App() {
         <SideNav />
         <div className="pages">
           {/* Routes component wraps indivual routes*/}
-          <Routes>
-            {/* Route component to create route - requires two props (path and element to render*/}
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            <Route
-              path="/about"
-              element={<About />}
-            />
-            <Route
-              path="/projects"
-              element={<Projects />}
-            />
-            <Route
-              path="/login"
-              element={user ? <Home /> : <Login />}
-            />
-            <Route
-              path="/signup"
-              element={user ? <Home /> : <Signup />}
-            />
-          </Routes>
+          <About />
+          <Projects />
+          <Login />
+          {/* <Signup /> */}
         </div>
       </BrowserRouter>
     </div>
