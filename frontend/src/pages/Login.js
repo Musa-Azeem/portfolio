@@ -4,9 +4,13 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import path from 'path-browserify'
 
 
+// Todo button to show form 
+
 const Login = () => {
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showCard, setShowCard] = useState(false)
 
   // Login
   const [error, setError] = useState(null)
@@ -43,31 +47,47 @@ const Login = () => {
     }
   }
 
-  return (
-    <section className="loginCard">
-      <form className="login" onSubmit={handleSubmit}>
-        <h1>Developer Log In</h1>
-        
-        <div className="row">
-          <input 
-            type="email" 
-            onChange={(e) => setEmail(e.target.value)} 
-            value={email} 
-            placeholder="Email"
-          />
-          <input 
-            type="password" 
-            onChange={(e) => setPassword(e.target.value)} 
-            value={password} 
-            placeholder="Password"
-          />
-        </div>
+  if (showCard) {
+    return (
+      <section className="loginCard">
+        <form className="login" onSubmit={handleSubmit}>
+          <h1>Developer Log In</h1>
+          
+          <div className="row">
+            <input 
+              type="email" 
+              onChange={(e) => setEmail(e.target.value)} 
+              value={email} 
+              placeholder="Email"
+            />
+            <input 
+              type="password" 
+              onChange={(e) => setPassword(e.target.value)} 
+              value={password} 
+              placeholder="Password"
+            />
+          </div>
 
-        <button disabled={isLoading}>Log in</button>
-        {error && <div className="error">{ error }</div>}
-      </form>
-    </section>
-  )
+          <button disabled={isLoading}>Log in</button>
+          <button type="button" onClick={ () => {setShowCard(false)} }>
+              Cancel
+          </button>
+          {error && <div className="error">{ error }</div>}
+        </form>
+      </section>
+    )
+  }
+
+  else {
+    // Button to expand login card
+    return (
+      <div className="showLoginCard">
+        <button onClick={() => setShowCard(true)}>
+          Developer Login
+        </button>
+      </div>
+    )
+  }
 }
 
 export default Login
