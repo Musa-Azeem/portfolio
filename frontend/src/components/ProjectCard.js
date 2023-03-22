@@ -11,11 +11,18 @@ const ProjectCard = ({ project, handleEditClick }) => {
   const { dispatch } = useProjectsContext()
   const { user } = useAuthContext()
   const [isHover, setIsHover] = useState(false);
-  const [backHeight, setBackHeight] = useState(0)
+  const [height, setHeight] = useState('')
   const backRef = useRef(null)
   
   useEffect(() => {
-    setBackHeight(backRef.current.clientHeight)
+    if (isHover) {
+      setHeight(`${20+backRef.current.clientHeight}px`)
+    }
+    else {
+      // if (25vh less than 160px) -> 25vh, else -> 160px
+      const maxHeight = 160;
+      setHeight(25*(0.01*window.innerHeight) <= maxHeight ? '25vh' : `${maxHeight}px`)
+    }
   }, [])
 
   const handleDelete = async () => {
@@ -31,22 +38,22 @@ const ProjectCard = ({ project, handleEditClick }) => {
     dispatch({type: "DELETE_PROJECT", payload: project})
   }
 
-  const getHeight = () => {
-    if (isHover) {
-      return `${20+backHeight}px`
-    }
-    else {
-      // if (25vh less than 160px) -> 25vh, else -> 160px
-      const maxHeight = 160;
-      return 25*(0.01*window.innerHeight) <= maxHeight ? '25vh' : `${maxHeight}px`
-    }
-  }
+  // const getHeight = () => {
+  //   if (isHover) {
+  //     return `${20+backHeight}px`
+  //   }
+  //   else {
+  //     // if (25vh less than 160px) -> 25vh, else -> 160px
+  //     const maxHeight = 160;
+  //     return 25*(0.01*window.innerHeight) <= maxHeight ? '25vh' : `${maxHeight}px`
+  //   }
+  // }
 
   return (
     <div className="projectCard" 
       onMouseEnter={() => { setIsHover(true)} }
       onMouseLeave={() => { setIsHover(false)} } 
-      style = { {height: getHeight()} }
+      style = { {height: height} }
     >
       <div className="innerProjectCard">
         <div className="projectCardFront">
