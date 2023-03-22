@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { SRV_URL } from '../config'
 import { useAuthContext } from '../hooks/useAuthContext'
 import path from 'path-browserify'
@@ -17,7 +17,13 @@ const Login = () => {
   // Login
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
-  const { dispatch } = useAuthContext()
+  const { user, dispatch } = useAuthContext()
+
+  useEffect(() => {
+    if (loginCardRef && loginCardRef.current) {
+      loginCardRef.current.scrollIntoView({behavior: "smooth"})
+    }
+  }, [loginCardRef, showCard])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -49,14 +55,17 @@ const Login = () => {
     }
   }
 
-  const handleShowLoginClick = () => {
-    setShowCard(true)
-    
-  }
-
-  if (showCard) {
-    return (
-      <section className="loginCard">
+  return (
+    <>
+    {!showCard && !user &&
+      <div className="showLoginCard">
+        <button onClick={ () => setShowCard(true) }>
+          Developer Login
+        </button>
+      </div>
+    }
+    {showCard && !user &&
+      <section className="loginCard" ref={ loginCardRef }>
         <form className="login" onSubmit={handleSubmit}>
           <h1>Developer Log In</h1>
           
@@ -76,25 +85,15 @@ const Login = () => {
           </div>
 
           <button disabled={isLoading}>Log in</button>
-          <button type="button" onClick={ () => {setShowCard(false)} }>
+          <button type="button" onClick={ () => setShowCard(false) }>
               Cancel
           </button>
           {error && <div className="error">{ error }</div>}
         </form>
       </section>
-    )
-  }
-
-  else {
-    // Button to expand login card
-    return (
-      <div className="showLoginCard">
-        <button onClick={() => setShowCard(true)}>
-          Developer Login
-        </button>
-      </div>
-    )
-  }
+    }
+    </>
+  )
 }
 
 export default Login

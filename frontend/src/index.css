@@ -437,6 +437,7 @@ body {
 .showLoginCard {
   display: flex;
   justify-content: center;
+  margin-top: 150px;
 }
 .showLoginCard button {
   background-color: var(--sidebg);
