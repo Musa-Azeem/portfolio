@@ -12,6 +12,8 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const [showCard, setShowCard] = useState(false)
 
+  const loginCardRef = useRef(null)
+
   // Login
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null)
@@ -45,6 +47,11 @@ const Login = () => {
       // update loading state
       setIsLoading(false)
     }
+  }
+
+  const handleShowLoginClick = () => {
+    setShowCard(true)
+    
   }
 
   if (showCard) {
