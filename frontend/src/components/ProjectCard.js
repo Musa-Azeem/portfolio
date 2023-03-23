@@ -15,6 +15,7 @@ const ProjectCard = ({ project, handleEditClick }) => {
   const backRef = useRef(null)
   
   useEffect(() => {
+    console.log('effect')
     if (isHover) {
       setHeight(`${20+backRef.current.clientHeight}px`)
     }
@@ -23,7 +24,7 @@ const ProjectCard = ({ project, handleEditClick }) => {
       const maxHeight = 160;
       setHeight(25*(0.01*window.innerHeight) <= maxHeight ? '25vh' : `${maxHeight}px`)
     }
-  }, [])
+  }, [isHover, window])
 
   const handleDelete = async () => {
     // Use Delete API to delete project from DB
