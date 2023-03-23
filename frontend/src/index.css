@@ -417,6 +417,7 @@ body {
       text-transform: uppercase;
       border-radius: 5%;
       margin-top: 20px;
+      margin-right: 20px;
     }
 
     .loginCard button:hover {
@@ -432,6 +433,30 @@ body {
     .loginCard .error::placeholder {
       color: var(--error);
     }
+
+.showLoginCard {
+  display: flex;
+  justify-content: center;
+  margin-top: 150px;
+}
+.showLoginCard button {
+  background-color: var(--sidebg);
+  border: 1px solid var(--sidebg);
+  cursor: pointer;
+  color: var(--navtext);
+  font-size: 14px;
+  padding: 8px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-radius: 5%;
+  margin: 20px;
+}
+
+.pages button:hover {
+  /* background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%); */
+  border: 1px solid var(--hover);
+  color: var(--hover);
+}
 
 @media screen and (max-width: 700px) {
 
