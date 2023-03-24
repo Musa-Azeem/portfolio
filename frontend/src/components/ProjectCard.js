@@ -3,9 +3,8 @@ import { useProjectsContext } from "../hooks/useProjectsContext"
 import { Link } from 'react-router-dom'
 import { GithubIcon, TrashIcon, EditIcon } from "./Icons"
 import { useAuthContext } from '../hooks/useAuthContext'
-import { SRV_URL } from '../config'
+import { PROJECTS_URL } from '../config'
 import path from 'path-browserify'
-import { useWindowSize } from '../hooks/useWindowSize'
 
 const ProjectCard = ({ project, handleEditClick }) => {
 
@@ -14,11 +13,8 @@ const ProjectCard = ({ project, handleEditClick }) => {
   const [isHover, setIsHover] = useState(false);
   const [height, setHeight] = useState('')
   const backRef = useRef(null)
-  const [width, h] = useWindowSize()
   
   useEffect(() => {
-    console.log('effect')
-    console.log(h)
     if (isHover) {
       setHeight(`${20+backRef.current.clientHeight}px`)
     }
@@ -32,7 +28,7 @@ const ProjectCard = ({ project, handleEditClick }) => {
   const handleDelete = async () => {
     // Use Delete API to delete project from DB
     // Use fetch API to send post request to add new workout to DB
-    const response = await fetch(path.join(SRV_URL, "projects", project._id), {
+    const response = await fetch(`${PROJECTS_URL}${project._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
@@ -41,17 +37,6 @@ const ProjectCard = ({ project, handleEditClick }) => {
     })
     dispatch({type: "DELETE_PROJECT", payload: project})
   }
-
-  // const getHeight = () => {
-  //   if (isHover) {
-  //     return `${20+backHeight}px`
-  //   }
-  //   else {
-  //     // if (25vh less than 160px) -> 25vh, else -> 160px
-  //     const maxHeight = 160;
-  //     return 25*(0.01*window.innerHeight) <= maxHeight ? '25vh' : `${maxHeight}px`
-  //   }
-  // }
 
   return (
     <div className="projectCard" 

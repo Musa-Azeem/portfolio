@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { SRV_URL } from '../config'
+import { LOGIN_URL } from '../config'
 import { useAuthContext } from '../hooks/useAuthContext'
 import path from 'path-browserify'
 
@@ -31,7 +31,7 @@ const Login = () => {
     setIsLoading(true)
     setError(null)
   
-    const response = await fetch(path.join(SRV_URL, 'user/login'), {
+    const response = await fetch(LOGIN_URL, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ email, password })

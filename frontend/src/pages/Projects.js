@@ -3,7 +3,7 @@ import ProjectCard from '../components/ProjectCard'
 import AddNewProjectCard from '../components/AddNewProjectCard'
 import EditProject from '../components/EditProject'
 import { useProjectsContext } from '../hooks/useProjectsContext'
-import { SRV_URL } from '../config'
+import { PUBLIC_URL } from '../config'
 import path from 'path-browserify'
 import { useAuthContext } from '../hooks/useAuthContext'
 
@@ -16,7 +16,7 @@ const Projects = () => {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const response = await fetch(path.join(SRV_URL, 'public-projects'))
+      const response = await fetch(PUBLIC_URL)
       const json = await response.json()
       if (response.ok) {
         dispatch({type: 'SET_PROJECTS', payload: json})

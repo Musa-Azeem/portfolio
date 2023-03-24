@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import path from 'path-browserify'
 import { useProjectsContext } from "../hooks/useProjectsContext"
-import { SRV_URL } from '../config'
+import { PROJECTS_URL } from '../config'
 import { useAuthContext } from "../hooks/useAuthContext";
 
 const EditProjectCard = ({ projectToEdit, setProjectToEdit }) => {
@@ -51,7 +51,7 @@ const EditProjectCard = ({ projectToEdit, setProjectToEdit }) => {
     }
 
     // Send modified project to server
-    const response = await fetch(path.join(SRV_URL, 'projects', projectToEdit._id), {
+    const response = await fetch(`${PROJECTS_URL}${projectToEdit._id}`, {
       method: 'PATCH',
       body: JSON.stringify(project),   // send project object as json string as expected
       headers: {
