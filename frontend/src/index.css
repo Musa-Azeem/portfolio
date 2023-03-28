@@ -128,6 +128,17 @@ body {
     text-decoration: underline;
   }
 
+/* About Page */
+.aboutPage {
+
+}
+
+  .aboutPage p {
+    font-size: 18pt;
+    text-align: justify;
+    margin: 50px;
+  }
+
 /* Project Page */
 .projectsBody {
   display: grid;
