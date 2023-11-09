@@ -80,7 +80,18 @@ body {
 
   .sidenav li {
     list-style-type: none;
+    margin: 10px 0px 10px 0px;
   }
+    .nav-link {
+      padding: 1px 8px 1px 16px;
+      margin: 10px 0px 10px 0px;
+      display: flex;
+    }
+
+    .nav-link:hover {
+      cursor: pointer;
+      color: var(--hover);
+    }
 
     .sidenav li a {
       padding: 1px 8px 1px 16px;

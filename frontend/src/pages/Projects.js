@@ -7,7 +7,7 @@ import { PUBLIC_URL } from '../config'
 import path from 'path-browserify'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-const Projects = () => {
+const Projects = React.forwardRef((props, ref) => {
   const { projects, dispatch } = useProjectsContext()
   const { user } = useAuthContext()
   const [projectToEdit, setProjectToEdit] = useState(null)
@@ -33,7 +33,7 @@ const Projects = () => {
   }
 
   return (
-    <div className="projectsPage">
+    <div className="projectsPage" ref={ ref }>
       <div className="header">
         <h1>Projects</h1>
       </div>
@@ -74,6 +74,6 @@ const Projects = () => {
       </div>
     </div>
   )
-}
+})
 
 export default Projects

@@ -5,8 +5,14 @@ import { LinkedInIcon, GithubIcon, MailIcon, ResumeIcon, HouseIcon, PersonIcon, 
 import { useAuthContext } from '../hooks/useAuthContext'
 
 
-const Navbar = () => {
+const Navbar = ({ aboutRef, projectsRef }) => {
   const { user, dispatch } = useAuthContext()
+
+  const scrollToRef = (ref) => {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({behavior: "smooth"})
+    }
+  }
 
   const logout = () => {
     // remove user from storage
@@ -49,18 +55,18 @@ const Navbar = () => {
       <hr className="navdivider"></hr>
 
       <ul className="navlinks">
-        <li><Link to="/">
+        {/* <li>
           <HouseIcon />
           <h1>Home</h1>
-        </Link></li>
-        <li><Link to="/about">
+        </li> */}
+        <li><div className="nav-link">
           <PersonIcon />
-          <h1>About</h1>
-        </Link></li>
-        <li><Link to="/projects">
+          <h1 onClick={ () => scrollToRef(aboutRef) }>About</h1>
+        </div></li>
+        <li><div className="nav-link">
           <CodeIcon />
-          <h1>Projects</h1>
-        </Link></li>
+          <h1 onClick={ () => scrollToRef(projectsRef) }>Projects</h1>
+        </div></li>
 
         { user &&
           <li>
